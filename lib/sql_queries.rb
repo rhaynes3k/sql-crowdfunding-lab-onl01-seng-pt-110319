@@ -19,13 +19,13 @@ def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_
 end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_summed_amount
-  "SELECT Users.names, Pledges.amount FROM Users RIGHT OUTER JOIN Pledges ON User.id = Pledges.user_id GROUP BY Pledges.amount ASC HAVING SUM(Pledges.amount)"
+  "SELECT Users.name, SUM(Pledges.amount) FROM Users LEFT OUTER JOIN Pledges ON Users.id = Pledges.user_id GROUP BY Users.name ORDER BY SUM(Pledges.amount)";
 end
 
 def selects_the_category_names_and_pledge_amounts_of_all_pledges_in_the_music_category
-  "Write your SQL query Here"
+  "SELECT Projects.category, Pledges.amount FROM Projects LEFT OUTER JOIN Pledges ON Projects.id = Pledges.project_id WHERE Category = 'music'";
 end
 
 def selects_the_category_name_and_the_sum_total_of_the_all_its_pledges_for_the_books_category
-  "Write your SQL query Here"
+  "SELECT Projects.category, SUM(Pledges.amount) FROM Projects LEFT OUTER JOIN Pledges ON Projects.id = Pledges.project_id WHERE Category = 'books'";
 end
